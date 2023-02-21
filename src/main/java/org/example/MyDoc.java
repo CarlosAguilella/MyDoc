@@ -1,16 +1,27 @@
+package org.example;
+
+import com.aspose.words.*;
+import com.aspose.words.Font;
+
+
+import java.awt.*;
+
 public class MyDoc {
 
-    void cosas(){
+    public void crearDocumento(String queEscribir, int fontSize, String nombreFichero){
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Que quieres escribir en el doc?");
-        String queEscribir = scanner.nextLine;
 
-        Document doc = new Document();
+
+        Document doc = null;
+        try {
+            doc = new Document();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         DocumentBuilder builder = new DocumentBuilder(doc);
 
         Font font = builder.getFont();
-        font.setSize(16.0);
+        font.setSize(fontSize);
         font.setBold(true);
         font.setColor(Color.BLUE);
         font.setName("Arial");
@@ -18,7 +29,10 @@ public class MyDoc {
 
         builder.write(queEscribir);
 
-        doc.save("WorkingWithFonts.FontFormatting.docx");
+        try {
+            doc.save(nombreFichero + ".docx");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
-
 }
