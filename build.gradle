@@ -14,3 +14,11 @@ repositories {
 dependencies {
     implementation 'com.aspose:aspose-words:22.11:jdk17'
 }
+publishing {
+    publications {
+        gpr(MavenPublication) {
+            artifactId = "MyDoc"
+            from(components.java)
+        }
+    }
+}
